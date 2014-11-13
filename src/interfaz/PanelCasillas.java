@@ -20,8 +20,10 @@ public class PanelCasillas extends JPanel implements ActionListener
 		campos = new JTextField[9][9];
 		setLayout(new GridLayout(9, 9));
 
-		for (int i = 0; i < 9; i++) {
-			for (int j = 0; j < 9; j++) {
+		for (int i = 0; i < 9; i++)
+		{
+			for (int j = 0; j < 9; j++)
+			{
 				campos[i][j] = new JTextField();
 				campos[i][j].addActionListener(this);
 				campos[i][j].setActionCommand("CASILLA_" + i + "_" + j);
@@ -30,18 +32,20 @@ public class PanelCasillas extends JPanel implements ActionListener
 		}
 	}
 
-	public void actualizar(int[][] casillas) {
-
-		for (int i = 0; i < 9; i++) {
-			for (int j = 0; j < 9; j++) {
+	public void actualizar(int[][] casillas)
+	{
+		for (int i = 0; i < 9; i++)
+		{
+			for (int j = 0; j < 9; j++)
+			{
 				campos[i][j].setText("" + casillas[i][j]);
 			}
 		}
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		
+	public void actionPerformed(ActionEvent e) 
+	{
 		System.out.println("aaa");
 	}
 
