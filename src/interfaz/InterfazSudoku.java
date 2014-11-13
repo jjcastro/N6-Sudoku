@@ -1,8 +1,6 @@
 package interfaz;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -12,80 +10,84 @@ import javax.swing.JOptionPane;
 
 import mundo.Sudoku;
 
-public class InterfazSudoku extends JFrame {
+public class InterfazSudoku extends JFrame
+{
+	private Sudoku sudoku;
+	
+	private PanelCasillas pnlCasillas;
+	private PanelAcciones pnlAcciones;
 
-	private Sudoku mundo;
-	private PanelCasillas panelCasillas;
-	private PanelAcciones panelBotones;
-
-	public InterfazSudoku() {
-
+	public InterfazSudoku()
+	{
 		String nombre = JOptionPane.showInputDialog(this, "Como se llama?",
 				"Nombre", JOptionPane.QUESTION_MESSAGE);
 
 		nombre = ((nombre == null) ? "sin nombre" : nombre);
+		
+		sudoku = new Sudoku(nombre);
 
-		
-		
-		mundo = new Sudoku(nombre);
-
-		panelCasillas = new PanelCasillas(this);
-		panelBotones = new PanelAcciones(this);
-		
-		
+		pnlCasillas = new PanelCasillas(this);
+		pnlAcciones = new PanelAcciones(this);
 		
 		setLayout(new BorderLayout());
 
-		add(panelCasillas, BorderLayout.CENTER);
-		add(panelBotones, BorderLayout.SOUTH);
+		add(pnlCasillas, BorderLayout.CENTER);
+		add(pnlAcciones, BorderLayout.SOUTH);
 	
-		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
 
 		setVisible(true);
 	}
 
-	public void cargar() {
+	public void cargar()
+	{
 		JFileChooser fc = new JFileChooser("./datos");
 		int result = fc.showOpenDialog(this);
-		if (result == JFileChooser.APPROVE_OPTION) {
+		if (result == JFileChooser.APPROVE_OPTION)
+		{
 
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		new InterfazSudoku();
 	}
 
-	private void actualizar() {
-		panelCasillas.actualizar(mundo.darCasillas());
-
+	private void actualizar()
+	{
+		pnlCasillas.actualizar(sudoku.darCasillas());
 	}
 
-	public void cargar(File archivo) {
-		try {
-			mundo.cargar(archivo);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+	public void cargar(File archivo)
+	{
+		try
+		{
+			sudoku.cargar(archivo);
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 		actualizar();
 	}
 
-	public void salvar(File archivo) {
-		// TODO Auto-generated method stub
-		try {
-			mundo.salvar2(archivo);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+	public void salvar(File archivo)
+	{
+		try
+		{
+			sudoku.salvar2(archivo);
+		}
+		catch (FileNotFoundException e)
+		{
 			e.printStackTrace();
 		}
 	}
 
-	public void reiniciarJuego() {
-		// TODO Auto-generated method stub
-		mundo.reiniciarJuego();
+	public void reiniciarJuego()
+	{
+		sudoku.reiniciarJuego();
 		actualizar();
 	}
 }

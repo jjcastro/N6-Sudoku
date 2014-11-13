@@ -7,13 +7,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class PanelCasillas extends JPanel implements ActionListener {
-
+public class PanelCasillas extends JPanel implements ActionListener
+{
+	private InterfazSudoku interfaz;
+	
 	private JTextField[][] campos;
-	private InterfazSudoku principal;
-
-	public PanelCasillas(InterfazSudoku padre) {
-		principal = padre;
+	
+	public PanelCasillas(InterfazSudoku pInterfaz)
+	{
+		interfaz = pInterfaz;
 
 		campos = new JTextField[9][9];
 		setLayout(new GridLayout(9, 9));

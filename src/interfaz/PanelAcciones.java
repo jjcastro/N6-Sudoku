@@ -9,8 +9,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class PanelAcciones extends JPanel implements ActionListener {
-
+public class PanelAcciones extends JPanel implements ActionListener
+{
 	private static final String SALVAR = "SALVAR";
 	private static final String CARGAR = "CARGAR";
 	private static final String REINICIAR = "REINICIAR";
@@ -19,10 +19,11 @@ public class PanelAcciones extends JPanel implements ActionListener {
 	private JButton botonCargar;
 	private JButton botonReiniciar;
 
-	private InterfazSudoku principal;
+	private InterfazSudoku interfaz;
 
-	public PanelAcciones(InterfazSudoku padre) {
-		principal = padre;
+	public PanelAcciones(InterfazSudoku pInterfaz)
+	{
+		interfaz = pInterfaz;
 
 		botonSalvar = new JButton("Salvar");
 		botonSalvar.setActionCommand(SALVAR);
@@ -40,42 +41,52 @@ public class PanelAcciones extends JPanel implements ActionListener {
 		add(botonReiniciar);
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e)
+	{
 		String comando = e.getActionCommand();
 
-		if (SALVAR.equals(comando)) {
-
+		if (SALVAR.equals(comando))
+		{
 			JFileChooser fc = new JFileChooser("./datos");
 			int result = fc.showSaveDialog(this);
-			if (result == JFileChooser.APPROVE_OPTION) {
+			
+			if (result == JFileChooser.APPROVE_OPTION)
+			{
 				File archivo = fc.getSelectedFile();
-				try {
-					principal.salvar(archivo);
-				} catch (Exception e1) {
+				try
+				{
+					interfaz.salvar(archivo);
+				}
+				catch (Exception e1)
+				{
 					JOptionPane.showMessageDialog(this,
 							"HEY!!!!!" + e1.getMessage());
 				}
 			}
-		} else if (CARGAR.equals(comando)) {
-
+		}
+		else if (CARGAR.equals(comando))
+		{
 			JFileChooser fc = new JFileChooser("./datos");
 			fc.setMultiSelectionEnabled(false);
 			int result = fc.showOpenDialog(this);
 
-			if (result == JFileChooser.APPROVE_OPTION) {
+			if (result == JFileChooser.APPROVE_OPTION)
+			{
 				File archivo = fc.getSelectedFile();
-				try {
-					principal.cargar(archivo);
-
-				} catch (Exception e1) {
+				try
+				{
+					interfaz.cargar(archivo);
+				}
+				catch (Exception e1)
+				{
 					JOptionPane.showMessageDialog(this,
 							"HEY!!!!!" + e1.getMessage());
 				}
 			}
-		} else if (REINICIAR.equals(comando)) {
-			principal.reiniciarJuego();
-
 		}
-
+		else if (REINICIAR.equals(comando))
+		{
+			interfaz.reiniciarJuego();
+		}
 	}
 }
