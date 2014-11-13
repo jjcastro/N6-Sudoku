@@ -44,12 +44,6 @@ public class InterfazSudoku extends JFrame implements ActionListener
 
 		add(pnlCasillas, BorderLayout.CENTER);
 		add(pnlAcciones, BorderLayout.SOUTH);
-	
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		pack();
-
-		setVisible(true);
-		setTitle("Sudoku");
 		
 		pnlAcciones.actualizar("", nombre);
 		
@@ -72,6 +66,12 @@ public class InterfazSudoku extends JFrame implements ActionListener
 		pnlRepetidos.add(btnRepetidosR);
 		
 		add(pnlRepetidos, BorderLayout.NORTH);
+		
+		setTitle("Sudoku");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		pack();
+		
+		setVisible(true);
 	}
 	
 	public static void main(String[] args)
@@ -135,15 +135,26 @@ public class InterfazSudoku extends JFrame implements ActionListener
 		}
 	}
 	
-	public void jugar(int i, int j, int num)
+	public void jugar(int i, int j, String num) throws Exception
 	{
 		try
 		{
-			sudoku.jugar(i, j, num);
+			if(num.equals(""))
+			{
+				sudoku.jugar(i, j, -1);
+			}
+			else if(num.equals("-1"))
+			{
+				throw new Exception();
+			}
+			else
+			{
+				sudoku.jugar(i, j, Integer.parseInt(num));
+			}
 		}
 		catch (Exception e)
 		{
-			JOptionPane.showMessageDialog(this, "Debe ser un número entre 1 y 9");
+			throw e;
 		}
 	}
 

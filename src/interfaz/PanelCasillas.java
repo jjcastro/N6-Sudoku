@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -60,9 +61,16 @@ public class PanelCasillas extends JPanel implements ActionListener
 		int posi = Integer.parseInt(comando.substring(8, 9));
 		int posj = Integer.parseInt(comando.substring(10, 11));
 		
-		int num = Integer.parseInt(campos[posi][posj].getText());
+		String input = campos[posi][posj].getText();
 		
-		interfaz.jugar(posi, posj, num);
+		try
+		{
+			interfaz.jugar(posi, posj, input);
+		}
+		catch (Exception e1)
+		{
+			JOptionPane.showMessageDialog(interfaz, "Debe ser un número entre 1 y 9");
+		}
 	}
 
 }
