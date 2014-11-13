@@ -24,6 +24,7 @@ public class PanelAcciones extends JPanel implements ActionListener
 	private JButton botonReiniciar;
 	
 	private JTextField txtNombreArchivo;
+	private JTextField txtNombreJugador;
 
 	private InterfazSudoku interfaz;
 
@@ -31,7 +32,7 @@ public class PanelAcciones extends JPanel implements ActionListener
 	{
 		interfaz = pInterfaz;
 		
-		setLayout(new GridLayout(2,1));
+		setLayout(new GridLayout(3,1));
 		
 		JPanel pnlBotones = new JPanel();
 		add(pnlBotones);
@@ -59,12 +60,25 @@ public class PanelAcciones extends JPanel implements ActionListener
 		pnlArchivo.add(lblArchivo);
 		
 		txtNombreArchivo = new JTextField();
+		txtNombreArchivo.setEditable(false);
 		pnlArchivo.add(txtNombreArchivo);
+		
+		JPanel pnlJugador = new JPanel();
+		pnlJugador.setLayout(new GridLayout(1, 2));
+		add(pnlJugador);
+		
+		JLabel lblJugador = new JLabel("Nombre jugador:", SwingConstants.CENTER);
+		pnlJugador.add(lblJugador);
+		
+		txtNombreJugador = new JTextField();
+		txtNombreJugador.setEditable(false);
+		pnlJugador.add(txtNombreJugador);
 	}
 	
-	public void actualizar(String nombreArchivo)
+	public void actualizar(String nombreArchivo, String nombreJugador)
 	{
 		txtNombreArchivo.setText(nombreArchivo);
+		txtNombreJugador.setText(nombreJugador);
 	}
 
 	public void actionPerformed(ActionEvent e)

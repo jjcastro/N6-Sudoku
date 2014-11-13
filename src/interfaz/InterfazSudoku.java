@@ -16,8 +16,6 @@ public class InterfazSudoku extends JFrame
 	
 	private PanelCasillas pnlCasillas;
 	private PanelAcciones pnlAcciones;
-	
-	private boolean seHaCargadoArchivo = false;
 
 	public InterfazSudoku()
 	{
@@ -41,13 +39,10 @@ public class InterfazSudoku extends JFrame
 
 		setVisible(true);
 		setTitle("Sudoku");
+		
+		pnlAcciones.actualizar("", nombre);
 	}
 	
-	public String darNombreArchivoCargado()
-	{
-		return sudoku.darNombreArchivo();
-	}
-
 	public static void main(String[] args)
 	{
 		new InterfazSudoku();
@@ -56,6 +51,7 @@ public class InterfazSudoku extends JFrame
 	private void actualizar()
 	{
 		pnlCasillas.actualizar(sudoku.darCasillas());
+		pnlAcciones.actualizar(sudoku.darNombreArchivo(), sudoku.darNombreJugador());
 	}
 	
 	private void borrarCasillas()
@@ -69,7 +65,6 @@ public class InterfazSudoku extends JFrame
 		try
 		{
 			sudoku.cargar(archivo);
-			seHaCargadoArchivo = true;
 		}
 		catch (Exception e)
 		{
