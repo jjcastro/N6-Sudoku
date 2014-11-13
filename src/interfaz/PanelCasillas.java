@@ -44,6 +44,10 @@ public class PanelCasillas extends JPanel implements ActionListener
 				{
 					campos[i][j].setText("" + casillas[i][j]);
 				}
+				else
+				{
+					campos[i][j].setText("");
+				}
 			}
 		}
 	}

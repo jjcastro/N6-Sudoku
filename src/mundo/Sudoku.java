@@ -13,7 +13,7 @@ public class Sudoku
 	private String nombreJugador;
 
 	private Properties propiedadesIniciales;
-	
+	private String nombreArchivoCargado;
 
 	public Sudoku(String nombre)
 	{
@@ -35,6 +35,11 @@ public class Sudoku
 		return nombreJugador;
 	}
 
+	public String darNombreArchivo()
+	{
+		return nombreArchivoCargado;
+	}
+	
 	public int[][] darCasillas()
 	{
 		return casillas;
@@ -83,21 +88,29 @@ public class Sudoku
 	public void cargar(File archivo) throws Exception
 	{
 		propiedadesIniciales = loadProperties(archivo);
+		nombreArchivoCargado = archivo.getName();
 
 		nombreJugador = propiedadesIniciales.getProperty("jugador");
 
 		reiniciarJuego();
 	}
 
-	public void reiniciarJuego()
+	public void reiniciarJuego() throws Exception
 	{
-		for (int i = 0; i < 9; i++)
+		if(propiedadesIniciales != null)
 		{
-			for (int j = 0; j < 9; j++)
+			for (int i = 0; i < 9; i++)
 			{
-				String num = propiedadesIniciales.getProperty("casilla." + i + "." + j);
-				casillas[i][j] = Integer.parseInt(num);
+				for (int j = 0; j < 9; j++)
+				{
+					String num = propiedadesIniciales.getProperty("casilla." + i + "." + j);
+					casillas[i][j] = Integer.parseInt(num);
+				}
 			}
+		}
+		else
+		{
+			throw new Exception("No se ha cargado ningún archivo.");
 		}
 	}
 

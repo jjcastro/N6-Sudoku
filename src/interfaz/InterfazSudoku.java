@@ -16,6 +16,8 @@ public class InterfazSudoku extends JFrame
 	
 	private PanelCasillas pnlCasillas;
 	private PanelAcciones pnlAcciones;
+	
+	private boolean seHaCargadoArchivo = false;
 
 	public InterfazSudoku()
 	{
@@ -60,12 +62,19 @@ public class InterfazSudoku extends JFrame
 	{
 		pnlCasillas.actualizar(sudoku.darCasillas());
 	}
+	
+	private void borrarCasillas()
+	{
+		Sudoku temp = new Sudoku(null);
+		pnlCasillas.actualizar(temp.darCasillas());
+	}
 
 	public void cargar(File archivo)
 	{
 		try
 		{
 			sudoku.cargar(archivo);
+			seHaCargadoArchivo = true;
 		}
 		catch (Exception e)
 		{
@@ -89,8 +98,20 @@ public class InterfazSudoku extends JFrame
 
 	public void reiniciarJuego()
 	{
-		sudoku.reiniciarJuego();
-		actualizar();
+		try
+		{
+			sudoku.reiniciarJuego();
+			actualizar();
+		}
+		catch(Exception e)
+		{
+			int reiniciar = JOptionPane.showConfirmDialog(this, e.getMessage() + "\n¿Desea empezar desde cero?", "Error", JOptionPane.YES_NO_OPTION);
+			
+			if(reiniciar == 0)
+			{
+				borrarCasillas();
+			}	
+		}
 	}
 	
 	public void jugar(int i, int j, int num)
