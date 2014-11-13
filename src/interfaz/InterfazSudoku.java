@@ -42,15 +42,10 @@ public class InterfazSudoku extends JFrame
 		setVisible(true);
 		setTitle("Sudoku");
 	}
-
-	public void cargar()
+	
+	public String darNombreArchivoCargado()
 	{
-		JFileChooser fc = new JFileChooser("./datos");
-		int result = fc.showOpenDialog(this);
-		if (result == JFileChooser.APPROVE_OPTION)
-		{
-
-		}
+		return sudoku.darNombreArchivo();
 	}
 
 	public static void main(String[] args)

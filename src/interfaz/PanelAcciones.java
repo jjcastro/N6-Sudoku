@@ -1,13 +1,17 @@
 package interfaz;
 
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class PanelAcciones extends JPanel implements ActionListener
 {
@@ -18,27 +22,49 @@ public class PanelAcciones extends JPanel implements ActionListener
 	private JButton botonSalvar;
 	private JButton botonCargar;
 	private JButton botonReiniciar;
+	
+	private JTextField txtNombreArchivo;
 
 	private InterfazSudoku interfaz;
 
 	public PanelAcciones(InterfazSudoku pInterfaz)
 	{
 		interfaz = pInterfaz;
-
+		
+		setLayout(new GridLayout(2,1));
+		
+		JPanel pnlBotones = new JPanel();
+		add(pnlBotones);
+		
 		botonSalvar = new JButton("Salvar");
 		botonSalvar.setActionCommand(SALVAR);
 		botonSalvar.addActionListener(this);
-		add(botonSalvar);
+		pnlBotones.add(botonSalvar);
 
 		botonCargar = new JButton("Cargar");
 		botonCargar.setActionCommand(CARGAR);
 		botonCargar.addActionListener(this);
-		add(botonCargar);
+		pnlBotones.add(botonCargar);
 
 		botonReiniciar = new JButton("Reiniciar");
 		botonReiniciar.setActionCommand(REINICIAR);
 		botonReiniciar.addActionListener(this);
-		add(botonReiniciar);
+		pnlBotones.add(botonReiniciar);
+		
+		JPanel pnlArchivo = new JPanel();
+		pnlArchivo.setLayout(new GridLayout(1, 2));
+		add(pnlArchivo);
+		
+		JLabel lblArchivo = new JLabel("Archivo cargado:", SwingConstants.CENTER);
+		pnlArchivo.add(lblArchivo);
+		
+		txtNombreArchivo = new JTextField();
+		pnlArchivo.add(txtNombreArchivo);
+	}
+	
+	public void actualizar(String nombreArchivo)
+	{
+		txtNombreArchivo.setText(nombreArchivo);
 	}
 
 	public void actionPerformed(ActionEvent e)
