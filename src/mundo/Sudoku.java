@@ -29,6 +29,16 @@ public class Sudoku
 			}
 		}
 	}
+	
+	public String darNombreJugador()
+	{
+		return nombreJugador;
+	}
+
+	public int[][] darCasillas()
+	{
+		return casillas;
+	}
 
 	public void salvar(File archivo) throws FileNotFoundException
 	{
@@ -105,22 +115,5 @@ public class Sudoku
 		}
 		fis.close();
 		return prop;
-	}
-
-	/*public static void main(String[] args) throws FileNotFoundException
-	{
-		Sudoku sud = new Sudoku("abc");
-		File f = new File("./datos/prueba.properties");
-		sud.salvar(f);
-	}*/
-
-	public String darNombreJugador()
-	{
-		return nombreJugador;
-	}
-
-	public int[][] darCasillas()
-	{
-		return casillas;
 	}
 }
