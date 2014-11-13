@@ -90,4 +90,16 @@ public class InterfazSudoku extends JFrame
 		sudoku.reiniciarJuego();
 		actualizar();
 	}
+	
+	public void jugar(int i, int j, int num)
+	{
+		try
+		{
+			sudoku.jugar(i, j, num);
+		}
+		catch (Exception e)
+		{
+			JOptionPane.showMessageDialog(this, "Debe ser un número entre 1 y 9");
+		}
+	}
 }

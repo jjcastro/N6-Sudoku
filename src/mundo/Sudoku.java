@@ -116,4 +116,15 @@ public class Sudoku
 		fis.close();
 		return prop;
 	}
+	
+	public void jugar(int i, int j, int num) throws Exception
+	{
+		Exception error = new Exception("El número debe estar entre 1-9");
+		if(0 < num && num < 10)
+		{
+			casillas[i][j] = num;
+		}
+		else throw error;
+		
+	}
 }

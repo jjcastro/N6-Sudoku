@@ -38,7 +38,12 @@ public class PanelCasillas extends JPanel implements ActionListener
 		{
 			for (int j = 0; j < 9; j++)
 			{
-				campos[i][j].setText("" + casillas[i][j]);
+				int valor = casillas[i][j];
+				
+				if(valor != -1)
+				{
+					campos[i][j].setText("" + casillas[i][j]);
+				}
 			}
 		}
 	}
@@ -46,7 +51,14 @@ public class PanelCasillas extends JPanel implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		System.out.println("aaa");
+		String comando = e.getActionCommand();
+		
+		int posi = Integer.parseInt(comando.substring(8, 9));
+		int posj = Integer.parseInt(comando.substring(10, 11));
+		
+		int num = Integer.parseInt(campos[posi][posj].getText());
+		
+		interfaz.jugar(posi, posj, num);
 	}
 
 }
