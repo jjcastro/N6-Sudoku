@@ -53,15 +53,7 @@ public class PanelAcciones extends JPanel implements ActionListener
 			if (result == JFileChooser.APPROVE_OPTION)
 			{
 				File archivo = fc.getSelectedFile();
-				try
-				{
-					interfaz.salvar(archivo);
-				}
-				catch (Exception e1)
-				{
-					JOptionPane.showMessageDialog(this,
-							"HEY!!!!!" + e1.getMessage());
-				}
+				interfaz.salvar(archivo);
 			}
 		}
 		else if (CARGAR.equals(comando))
@@ -73,15 +65,7 @@ public class PanelAcciones extends JPanel implements ActionListener
 			if (result == JFileChooser.APPROVE_OPTION)
 			{
 				File archivo = fc.getSelectedFile();
-				try
-				{
-					interfaz.cargar(archivo);
-				}
-				catch (Exception e1)
-				{
-					JOptionPane.showMessageDialog(this,
-							"HEY!!!!!" + e1.getMessage());
-				}
+				interfaz.cargar(archivo);
 			}
 		}
 		else if (REINICIAR.equals(comando))

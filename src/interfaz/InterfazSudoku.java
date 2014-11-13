@@ -38,6 +38,7 @@ public class InterfazSudoku extends JFrame
 		pack();
 
 		setVisible(true);
+		setTitle("Sudoku");
 	}
 
 	public void cargar()
@@ -70,6 +71,7 @@ public class InterfazSudoku extends JFrame
 		{
 			e.printStackTrace();
 		}
+		
 		actualizar();
 	}
 
