@@ -86,7 +86,6 @@ public class Sudoku
 			for (int j = 0; j < 9; j++)
 			{
 				String num = propiedadesIniciales.getProperty("casilla." + i + "." + j);
-				System.out.println(num);
 				casillas[i][j] = Integer.parseInt(num);
 			}
 		}
@@ -108,12 +107,12 @@ public class Sudoku
 		return prop;
 	}
 
-	public static void main(String[] args) throws FileNotFoundException
+	/*public static void main(String[] args) throws FileNotFoundException
 	{
 		Sudoku sud = new Sudoku("abc");
 		File f = new File("./datos/prueba.properties");
 		sud.salvar(f);
-	}
+	}*/
 
 	public String darNombreJugador()
 	{
