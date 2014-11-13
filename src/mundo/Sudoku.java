@@ -48,7 +48,7 @@ public class Sudoku
 		pw.close();
 	}
 
-	public void salvar2(File archivo) throws FileNotFoundException
+	/*public void salvar2(File archivo) throws FileNotFoundException
 	{
 		PrintWriter pw = new PrintWriter(archivo);
 
@@ -68,7 +68,7 @@ public class Sudoku
 		}
 
 		pw.close();
-	}
+	}*/
 
 	public void cargar(File archivo) throws Exception
 	{
@@ -86,6 +86,7 @@ public class Sudoku
 			for (int j = 0; j < 9; j++)
 			{
 				String num = propiedadesIniciales.getProperty("casilla." + i + "." + j);
+				System.out.println(num);
 				casillas[i][j] = Integer.parseInt(num);
 			}
 		}

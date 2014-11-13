@@ -77,7 +77,7 @@ public class InterfazSudoku extends JFrame
 	{
 		try
 		{
-			sudoku.salvar2(archivo);
+			sudoku.salvar(archivo);
 		}
 		catch (FileNotFoundException e)
 		{
