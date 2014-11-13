@@ -142,4 +142,55 @@ public class Sudoku
 		else throw error;
 		
 	}
+	
+	public boolean hayRepetidosColumnas()
+	{
+		boolean hayRepetidos = false;
+		
+		for(int i = 0; i < 9 && !hayRepetidos; i++)
+		{
+			boolean[] numeros = new boolean[9];
+			
+			for(int j = 0; j < 9 && !hayRepetidos; j++)
+			{
+				int num = casillas[j][i];
+				
+				if(num != -1)
+				{
+					if(!numeros[num+1]) numeros[num+1] = true;
+					else hayRepetidos = true;
+				}
+			}
+		}
+		
+		return hayRepetidos;
+	}
+	
+	public boolean hayRepetidosFilas()
+	{
+		boolean hayRepetidos = false;
+		
+		for(int i = 0; i < 9 && !hayRepetidos; i++)
+		{
+			boolean[] numeros = new boolean[9];
+			
+			for(int j = 0; j < 9 && !hayRepetidos; j++)
+			{
+				int num = casillas[i][j];
+				
+				if(num != -1)
+				{
+					if(!numeros[num+1]) numeros[num+1] = true;
+					else hayRepetidos = true;
+				}
+			}
+		}
+		
+		return hayRepetidos;
+	}
+	
+	public boolean hayRepetidosRecuadros()
+	{
+		return false;
+	}
 }

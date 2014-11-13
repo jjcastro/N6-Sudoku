@@ -1,17 +1,28 @@
 package interfaz;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import mundo.Sudoku;
 
-public class InterfazSudoku extends JFrame
+public class InterfazSudoku extends JFrame implements ActionListener
 {
+	private static final String HAYREPETIDOSR = "HAYREPETIDOSR";
+
+	private static final String HAYREPETIDOSF = "HAYREPETIDOSF";
+
+	private static final String HAYREPETIDOSC = "HAYREPETIDOSC";
+
 	private Sudoku sudoku;
 	
 	private PanelCasillas pnlCasillas;
@@ -41,6 +52,26 @@ public class InterfazSudoku extends JFrame
 		setTitle("Sudoku");
 		
 		pnlAcciones.actualizar("", nombre);
+		
+		JPanel pnlRepetidos = new JPanel();
+		pnlRepetidos.setLayout(new GridLayout(1,3));
+		
+		JButton btnRepetidosC = new JButton("Columnas");
+		btnRepetidosC.setActionCommand(HAYREPETIDOSC);
+		btnRepetidosC.addActionListener(this);
+		pnlRepetidos.add(btnRepetidosC);
+		
+		JButton btnRepetidosF = new JButton("Filas");
+		btnRepetidosF.setActionCommand(HAYREPETIDOSF);
+		btnRepetidosF.addActionListener(this);
+		pnlRepetidos.add(btnRepetidosF);
+		
+		JButton btnRepetidosR = new JButton("Recuadros");
+		btnRepetidosR.setActionCommand(HAYREPETIDOSR);
+		btnRepetidosR.addActionListener(this);
+		pnlRepetidos.add(btnRepetidosR);
+		
+		add(pnlRepetidos, BorderLayout.NORTH);
 	}
 	
 	public static void main(String[] args)
@@ -113,6 +144,25 @@ public class InterfazSudoku extends JFrame
 		catch (Exception e)
 		{
 			JOptionPane.showMessageDialog(this, "Debe ser un número entre 1 y 9");
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		String comando = e.getActionCommand();
+		
+		if(comando.equals(HAYREPETIDOSC))
+		{
+			System.out.println(sudoku.hayRepetidosColumnas());
+		}
+		else if(comando.equals(HAYREPETIDOSF)) 
+		{
+			System.out.println(sudoku.hayRepetidosFilas());
+		}
+		else if(comando.equals(HAYREPETIDOSR))
+		{
+			System.out.println(sudoku.hayRepetidosRecuadros());
 		}
 	}
 }
