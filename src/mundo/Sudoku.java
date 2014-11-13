@@ -203,7 +203,7 @@ public class Sudoku
 				if(casillas[i][j] == -1) estaLleno = false;
 			}
 		}
-			
+		
 		return estaLleno;
 	}
 }

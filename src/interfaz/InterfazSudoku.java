@@ -17,6 +17,8 @@ import mundo.Sudoku;
 
 public class InterfazSudoku extends JFrame implements ActionListener
 {
+	private static final String LLENO = "LLENO";
+
 	private static final String HAYREPETIDOSR = "HAYREPETIDOSR";
 
 	private static final String HAYREPETIDOSF = "HAYREPETIDOSF";
@@ -48,7 +50,7 @@ public class InterfazSudoku extends JFrame implements ActionListener
 		pnlAcciones.actualizar("", nombre);
 		
 		JPanel pnlRepetidos = new JPanel();
-		pnlRepetidos.setLayout(new GridLayout(1,3));
+		pnlRepetidos.setLayout(new GridLayout(1,4));
 		
 		JButton btnRepetidosC = new JButton("Columnas");
 		btnRepetidosC.setActionCommand(HAYREPETIDOSC);
@@ -64,6 +66,11 @@ public class InterfazSudoku extends JFrame implements ActionListener
 		btnRepetidosR.setActionCommand(HAYREPETIDOSR);
 		btnRepetidosR.addActionListener(this);
 		pnlRepetidos.add(btnRepetidosR);
+		
+		JButton btnLleno = new JButton("Lleno");
+		btnLleno.setActionCommand(LLENO);
+		btnLleno.addActionListener(this);
+		pnlRepetidos.add(btnLleno);
 		
 		add(pnlRepetidos, BorderLayout.NORTH);
 		
@@ -174,6 +181,10 @@ public class InterfazSudoku extends JFrame implements ActionListener
 		else if(comando.equals(HAYREPETIDOSR))
 		{
 			System.out.println(sudoku.hayRepetidosRecuadros());
+		}
+		else if(comando.equals(LLENO))
+		{
+			System.out.println(sudoku.estaLleno());
 		}
 	}
 }
