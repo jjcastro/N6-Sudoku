@@ -192,5 +192,18 @@ public class Sudoku
 		return false;
 	}
 	
-	
+	public boolean estaLleno()
+	{
+		boolean estaLleno = true;
+		
+		for(int i = 0; i < 9 && estaLleno; i++)
+		{
+			for(int j = 0; j < 9 && estaLleno; j++)
+			{
+				if(casillas[i][j] == -1) estaLleno = false;
+			}
+		}
+			
+		return estaLleno;
+	}
 }
